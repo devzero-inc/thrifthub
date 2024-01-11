@@ -1,0 +1,33 @@
+# suggester tool version: 0.0.1+c56de9f4-dirty
+
+dev:
+  commands:
+  - command: npm i
+    directory: thrifthub
+    name: install cmd
+  - command: python -m venv --copies ~/.venv && . ~/.venv/bin/activate && pip install
+      -r requirements.txt
+    directory: thrifthub/backend
+    name: install cmd
+  - command: yarn install --frozen-lockfile
+    directory: thrifthub/frontend
+    name: install cmd
+  name: ""
+  packages:
+  - nixpkgs.gcc
+  - nixpkgs.nodePackages.yarn
+  - nixpkgs.nodejs_18
+  - nixpkgs.postgresql
+  - nixpkgs.python38
+  repos:
+  - https://github.com/devzero-inc/thrifthub
+compute:
+  compute_name: default
+  os_family: UBUNTU_22_04
+  region: us-west-1
+  resources:
+    cpus: 4+
+    disk: 50
+network:
+  category: container
+  network_name: default
